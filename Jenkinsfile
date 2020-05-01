@@ -16,17 +16,31 @@ pipeline {
                 echo "${BUILD_PATH}"
                 sh "cd ${BUILD_PATH}"
                 sh "mvn clean compile test install"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+
+                jacoco( 
+	            execPattern: 'target/*.exec',
+                    classPattern: 'target/classes',
+                    sourcePattern: 'src/main/java',
+                    exclusionPattern: 'src/test*'
+                )
+
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploy application to test environment..'
             }
+        }
+        stage('FunctionalTest') {
+            steps {
+                echo 'Launch functional test....'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
