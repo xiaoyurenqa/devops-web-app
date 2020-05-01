@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                echo 'Workspace path ${WORKSPACE}'
             }
         }
         stage('Test') {
