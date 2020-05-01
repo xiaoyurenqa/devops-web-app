@@ -4,11 +4,21 @@ pipeline {
     triggers {
         pollSCM('H */4 * * 1-5')
     }
+
+    environment {
+        BUILD_PATH = env.WORKSPACE 
+    }
+
+    parameters {
+
+    }
+     
     stages {
-        stage('Build') {
+        stage('MavenInstall') {
             steps {
-                echo 'Building..'
-                echo "Workspace path ${WORKSPACE}"
+                echo 'Generate WAR file...'
+                echo "${BUILD_PATH}"
+                sh "pwd"
             }
         }
         stage('Test') {
