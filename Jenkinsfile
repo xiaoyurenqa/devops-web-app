@@ -6,19 +6,16 @@ pipeline {
     }
 
     environment {
-        BUILD_PATH = env.WORKSPACE 
+        BUILD_PATH = "${env.WORKSPACE}" 
     }
-
-    parameters {
-
-    }
-     
+    
     stages {
         stage('MavenInstall') {
             steps {
                 echo 'Generate WAR file...'
                 echo "${BUILD_PATH}"
-                sh "pwd"
+                sh "cd ${BUILD_PATH}"
+                sh "mvn clean compile test install"
             }
         }
         stage('Test') {
