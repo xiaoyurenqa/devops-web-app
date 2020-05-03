@@ -29,6 +29,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy application to test environment..'
+                deploy(
+                       adapters: [tomcat9(credentialsId: '5ade1677-464d-4c4e-90cd-db48ed114957', 
+                                  path: '', 
+                                  url: 'http://3.22.185.164:8080/')], 
+                       contextPath: null, 
+                       war: 'target/*.war' 
             }
         }
         stage('FunctionalTest') {
