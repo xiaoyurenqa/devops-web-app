@@ -30,10 +30,10 @@ pipeline {
             steps {
                 echo 'Deploy application to test environment..'
                 deploy(
-                       adapters: [tomcat9(credentialsId: '5ade1677-464d-4c4e-90cd-db48ed114957', 
+                       adapters: [tomcat9(credentialsId: '2e17c056-e8e0-4765-b563-23fad1681939', 
                                   path: '', 
                                   url: 'http://3.22.185.164:8080/')], 
-                       contextPath: null, 
+                       contextPath: '/web-application', 
                        war: 'target/*.war'
                 ) 
             }
