@@ -34,7 +34,8 @@ pipeline {
                                   path: '', 
                                   url: 'http://3.22.185.164:8080/')], 
                        contextPath: null, 
-                       war: 'target/*.war' 
+                       war: 'target/*.war'
+                ) 
             }
         }
         stage('FunctionalTest') {
