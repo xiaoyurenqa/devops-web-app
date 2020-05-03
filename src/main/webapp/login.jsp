@@ -10,7 +10,7 @@
 	<form action="form_login" method="post">
 		<table style="with: 50%">
 			<tr>
-				<td>UserName</td>
+				<td>Username</td>
 				<td><input type="text" name="username" /></td>
 			</tr>
 			<tr>
