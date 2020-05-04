@@ -15,7 +15,7 @@ pipeline {
                 echo 'Generate WAR file...'
                 echo "${BUILD_PATH}"
                 sh "cd ${BUILD_PATH}"
-                sh "mvn clean compile test install"
+                sh "sudo mvn clean compile test install"
 
                 jacoco( 
 	            execPattern: 'target/*.exec',
@@ -42,9 +42,9 @@ pipeline {
             steps {
                 echo 'Launch functional test....'
                 sh """
-                   source /home/ubuntu/selenium-test/bin/activate
+                   sudo source /home/ubuntu/selenium-test/bin/activate
                    cd functional_tests
-                   pytest --alluredir ../target/surefire-reports --driver chrome -vvvv web-test.py
+                   sudo pytest --alluredir ../target/surefire-reports --driver chrome -vvvv web-test.py
                    """
             }
         }
