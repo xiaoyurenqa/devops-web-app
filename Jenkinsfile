@@ -41,11 +41,8 @@ pipeline {
         stage('FunctionalTest') {
             steps {
                 echo 'Launch functional test....'
-                sh """
-                   source /home/ubuntu/selenium-test/bin/activate
-                   cd functional_tests
-                   pytest --alluredir ../target/surefire-reports --driver chrome -vvvv web-test.py
-                   """
+                withPythonEnv('/home/ubuntu/selenium-test/'){
+                   pytest --alluredir target/surefire-reports --driver chrome -vvvv functional_tests/web-test.py
             }
         }
     }
