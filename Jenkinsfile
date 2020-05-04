@@ -16,14 +16,6 @@ pipeline {
                 echo "${BUILD_PATH}"
                 sh "cd ${BUILD_PATH}"
                 sh "mvn clean compile test install"
-
-                jacoco( 
-	            execPattern: 'target/*.exec',
-                    classPattern: 'target/classes',
-                    sourcePattern: 'src/main/java',
-                    exclusionPattern: 'src/test*'
-                )
-
             }
         }
         stage('Deploy') {
@@ -50,6 +42,13 @@ pipeline {
 
     post {
         always {
+            jacoco( 
+	        execPattern: 'target/*.exec',
+                classPattern: 'target/classes',
+                sourcePattern: 'src/main/java',
+                exclusionPattern: 'src/test*'
+            )
+
             junit 'target/surefire-reports/*.xml'
             allure([
                 includeProperties: false,
