@@ -46,7 +46,8 @@ pipeline {
 	        execPattern: 'target/*.exec',
                 classPattern: 'target/classes',
                 sourcePattern: 'src/main/java',
-                exclusionPattern: 'src/test*'
+                exclusionPattern: 'src/test*',
+                runAlways: true
             )
 
             junit 'target/surefire-reports/*.xml'
