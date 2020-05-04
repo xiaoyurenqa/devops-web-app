@@ -41,6 +41,11 @@ pipeline {
         stage('FunctionalTest') {
             steps {
                 echo 'Launch functional test....'
+                sh """
+                   source /home/ubuntu/selenium-test/bin/activate
+                   cd functional_tests
+                   pytest --alluredir ../target/surefire-reports --driver chrome -vvvv web-test.py
+                   """
             }
         }
     }
@@ -48,6 +53,13 @@ pipeline {
     post {
         always {
             junit 'target/surefire-reports/*.xml'
+            allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'target/surefire-reports']]
+         ])
         }
     }
 }

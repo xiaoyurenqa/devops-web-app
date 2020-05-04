@@ -58,6 +58,50 @@ public class RegisterTest {
 		verify(session).setAttribute("username", "admin");
 		verify(session).setAttribute("password", "Password123!");
 	}
+	
+	@Test 
+	public void doPost_OneEmptyInput_StaySamePage() throws ServletException, IOException {
+		when(request.getParameter("first_name")).thenReturn("John");
+		when(request.getParameter("last_name")).thenReturn("Doe");
+		when(request.getParameter("username")).thenReturn("admin");
+		when(request.getParameter("password")).thenReturn("");
+		when(request.getParameter("address")).thenReturn("");
+		when(request.getParameter("contact")).thenReturn("");
+		when(request.getSession()).thenReturn(session);
+		when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
+		
+		register.doPost(request, response);
+		
+		verify(request).getRequestDispatcher("register.jsp");
+		verify(session).setAttribute("username", "admin");
+		verify(session).setAttribute("password", "");
+		verify(session).setAttribute("first_name", "John");
+		verify(session).setAttribute("last_name", "Doe");
+		verify(session).setAttribute("address", "");
+		verify(session).setAttribute("contact", "");
+	}
+	
+	@Test 
+	public void doPost_AllEmptyInput_StaySamePage() throws ServletException, IOException {
+		when(request.getParameter("first_name")).thenReturn("");
+		when(request.getParameter("last_name")).thenReturn("");
+		when(request.getParameter("username")).thenReturn("");
+		when(request.getParameter("password")).thenReturn("");
+		when(request.getParameter("address")).thenReturn("");
+		when(request.getParameter("contact")).thenReturn("");
+		when(request.getSession()).thenReturn(session);
+		when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
+		
+		register.doPost(request, response);
+		
+		verify(request).getRequestDispatcher("register.jsp");
+		verify(session).setAttribute("username", "");
+		verify(session).setAttribute("password", "");
+		verify(session).setAttribute("first_name", "");
+		verify(session).setAttribute("last_name", "");
+		verify(session).setAttribute("address", "");
+		verify(session).setAttribute("contact", "");
+	}
 
 
 }
