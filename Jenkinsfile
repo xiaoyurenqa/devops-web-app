@@ -58,6 +58,19 @@ pipeline {
                 reportBuildPolicy: 'ALWAYS',
                 results: [[path: 'target/surefire-reports']]
          ])
+            emailext(
+                attachLog: true, 
+                body: '''<p>Hi,</p>
+                      <p>The test $PROJECT_NAME is finished with status of $BUILD_STATUS</p>
+                      <p>
+                      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+                      Check console output at $BUILD_URL to view the results.</p>
+                      <p>
+                      For a comprehensive report, please see here $BUILD_URL/allure
+                      </p>''', 
+                subject: 'Test Report: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', 
+                to: 'rxyjp2008@hotmail.com'
+            )
         }
     }
 }
