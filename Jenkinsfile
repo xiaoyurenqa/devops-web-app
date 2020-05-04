@@ -64,9 +64,9 @@ pipeline {
                       <p>The test $PROJECT_NAME is finished with status of $BUILD_STATUS</p>
                       <p>
                       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-                      Check console output at $BUILD_URL to view the results.</p>
+                      Check console output at <a href="$BUILD_URL">$BUILD_URL</a> to view the results.</p>
                       <p>
-                      For a comprehensive report, please see here $BUILD_URL/allure
+                      For a comprehensive report, please see here <a href="$BUILD_URL/allure">$BUILD_URL/allure</a>.
                       </p>''', 
                 subject: 'Test Report: $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', 
                 to: 'rxyjp2008@hotmail.com'
