@@ -89,7 +89,7 @@ def test_register_missing_username(selenium):
     )
     assert selenium.current_url == base_url + "form_register"
 
-#@pytest.mark.skip(reason="no way of currently testing this")
+@pytest.mark.skip(reason="no way of currently testing this")
 def test_register_special_username(selenium):
     test_page_title(selenium)
     test_start_register(selenium)
