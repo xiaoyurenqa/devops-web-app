@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -101,6 +102,25 @@ public class RegisterTest {
 		verify(session).setAttribute("last_name", "");
 		verify(session).setAttribute("address", "");
 		verify(session).setAttribute("contact", "");
+	}
+	
+	//@Ignore
+	@Test
+	public void doPost_NonEmptyInput_SpecialUsername_GoToLoginPage() throws ServletException, IOException {
+		when(request.getParameter("first_name")).thenReturn("John");
+		when(request.getParameter("last_name")).thenReturn("Doe");
+		when(request.getParameter("username")).thenReturn("Denver");
+		when(request.getParameter("password")).thenReturn("Password123!");
+		when(request.getParameter("address")).thenReturn("Howe Street");
+		when(request.getParameter("contact")).thenReturn("12345678");
+		when(request.getSession()).thenReturn(session);
+		when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
+		
+		register.doPost(request, response);
+		
+		verify(request).getRequestDispatcher("login.jsp");
+		verify(session).setAttribute("username", "admin");
+		verify(session).setAttribute("password", "Password123!");
 	}
 
 
