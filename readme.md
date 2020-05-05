@@ -142,3 +142,17 @@ After the docker image is in place, run
 ```
 sudo docker run -it -d -p 8080:8080 tomcat:your-tag
 ```
+
+## Future Work
+
+This solution can be improved in many ways, and one of the most obvious ones is to containerize the test environment, instead of setting it up in a Jenkins server. If and when Jenkins servers are expanded with multiple Jenkins slaves, it would be painful to set up the test environment on each slave, and every single time when there is a change with the packages, say an upgrade, it has to be done on all slaves! 
+
+Thus it would be ideal to pack all the test bits - maven, python, pytest, etc. to a docker image, and write a pipeline to pull the image each time a test is executed. 
+
+Jenkins has several plugins to support docker run, while I have not looked into them yet, it seems to be a practical approach.
+
+Another thing I would like to improve is the reporting. I have not fully explored Allure yet, and there are some other tools that could be powerful to support various needs too. Some more investigations need to be done before settling with one tool.
+
+As for Jenkins, I chose it because it is familiar to me, but there are some other CI tools out there that could be of great potentials, CircleCI, GitLab, to name a few. 
+
+Automatic bug reporting. This is a big topic that requires quite some work. More specifically, bug reporting itself is not hard, what's most difficult is identify failed test cases, collect logs and data. I have not thought of a good way to tackle this problem. 
