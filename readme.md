@@ -54,6 +54,7 @@ Jenkins pipeline jobs are used in this project. Jenkinsfile recorded all necessa
 3. Setup GitHub account on Jenkins side 
 4. In the Jenkins job, check "GitHub hook trigger for GITScm polling", check "Poll SCM" and set schedule to be "H */4 * * 1-5", it would run periodically
 5. Create a Python virtual environment on Jenkins 
+6. Install packages in the virtualenv: pytest, selenium, pytest-selenium, allure-pytest
 
 Another hiccup: after setting up root user, Jenkins would lose its sudo previlege, to run Jenkins shell commands as root:
 
