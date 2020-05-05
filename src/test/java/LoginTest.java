@@ -51,11 +51,12 @@ public class LoginTest {
 		login.doPost(request, response);
 		
 		verify(request).getRequestDispatcher("homepage.jsp");
+        verify(session).setAttribute("username", "admin");
 	}
 
 	@Test
 	public void doPost_OneEmptyInput_StaySamePage() throws ServletException, IOException {
-		when(request.getParameter("username")).thenReturn("admin");
+		when(request.getParameter("username")).thenReturn("xyfj");
 		when(request.getParameter("password")).thenReturn("");
 		when(request.getSession()).thenReturn(session);
 		when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
@@ -63,6 +64,7 @@ public class LoginTest {
 		login.doPost(request, response);
 		
 		verify(request).getRequestDispatcher("login.jsp");
+        verify(session).setAttribute("username", "xyfj");
 	}
 	
 	@Test
@@ -75,5 +77,6 @@ public class LoginTest {
 		login.doPost(request, response);
 		
 		verify(request).getRequestDispatcher("login.jsp");
+        verify(session).setAttribute("username", "");
 	}
 }

@@ -104,7 +104,7 @@ public class RegisterTest {
 		verify(session).setAttribute("contact", "");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void doPost_NonEmptyInput_SpecialUsername_GoToLoginPage() throws ServletException, IOException {
 		when(request.getParameter("first_name")).thenReturn("John");
@@ -119,7 +119,7 @@ public class RegisterTest {
 		register.doPost(request, response);
 		
 		verify(request).getRequestDispatcher("login.jsp");
-		verify(session).setAttribute("username", "admin");
+		verify(session).setAttribute("username", "Denver");
 		verify(session).setAttribute("password", "Password123!");
 	}
 
