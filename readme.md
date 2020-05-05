@@ -1,7 +1,7 @@
 # A Simple CI Pipeline with Jenkins
 
 
-## Inroduction
+## Introduction
 
 The goal of this pipeline is to automatically trigger the main pipeline platform - Jenkins, at push or pull request from GitHub, run unit tests, deploy the web app WAR file to the test environment, run functional tests, generate reports, and send the job information to recipients via email.
 
