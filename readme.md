@@ -1,4 +1,4 @@
-# A Simple CI Pipeline with Jenkins
+# A Simple CI Pipeline with Jenkins and Its Plugins
 
 
 ## Introduction
